@@ -1,0 +1,37 @@
+let cal=
+   object {  arg => 0
+             acc => 0
+             enter => meth(s,n) begin update s.arg := n ; n end end
+             add => meth(s) 
+                    begin 
+                      update s.acc := send s.equals();
+                      update s.equals := meth(s) +(get s.acc get s.arg) end;
+                      s
+                    end
+                  end
+             sub => meth(s) 
+                    begin 
+                      update s.acc := send s.equals();
+                      update s.equals := meth(s) -(get s.acc get s.arg) end;
+                      s 
+                    end 
+                  end                       
+             equals => meth(s) get s.arg  end
+             reset => meth(s) 
+                      begin 
+                        update s.arg := 0;
+                        update s.acc := 0;
+                        update s.equals := meth(s) get s.arg  end;
+                        s 
+                      end 
+                    end
+             } end ,
+    valor = 3, valor2 = 2
+                 in begin send cal.reset();
+                          send cal.enter(valor);
+                          send cal.sub();
+                          send cal.enter(valor2);
+                          send cal.equals() end end
+
+
+     	Devuelve 1

@@ -1,0 +1,297 @@
+Integrantes                  Códigos
+
+Jhonier Andrés Calero Rodas  1424599
+Joan Manuel Tovar Guzmán     1423124
+Juan Pablo Moreno Muñoz      1423437
+
+Universidad del Valle
+Fundamentos de Lenguajes de Programación
+2016
+
+
+
+Pruebas let: 
+
+  * let
+        x = 7 ,
+        y = 34 ,
+        z = 9
+    in
+       begin
+        set x := 12;
+        +(x +(y z))
+       end
+    end
+
+   Resultado: 50
+
+  * let 
+        suma = proc(a,b)
+                   +(a b) 
+               end ,
+        m = 12 ,
+        n = 22
+    in
+       apply suma(m,n)
+    end
+
+   Resultado: 34
+
+  * let 
+        fun1 = proc(x)
+                   if is(x 0) then +(x 1) else -(x 1) 
+                   end
+               end ,
+        y = 18
+    in
+       begin
+         set y := 0;
+         apply fun1(y)
+       end
+    end
+
+  Resultado: 17
+
+  * let
+        z = 3
+    in
+       let p = proc(s,y) 
+                   begin set z := 5; 
+                         set s := 4; 
+                         +(s z) 
+                   end 
+               end
+       in
+          apply p(1,2) 
+       end 
+     end
+
+  Resultado: 7
+
+Pruebas var:
+
+  * var
+        x = 25 ,
+        y = 15 ,
+        z = 5
+    in
+       begin
+         set x := 3;
+         set y := 4;
+         set z := 0;
+         +(x +(y z))
+       end
+    end
+
+  Resultado: 7
+
+  * var
+        m = proc(a,b)
+                if >(a b) then a else b
+                end 
+            end ,
+        n = 5 ,
+        k = 10
+    in
+       begin 
+         set n := apply m(n, k);
+         set k := 7;
+         apply m(n,k)
+       end
+    end
+
+  Resultado: 10
+
+
+  * var 
+        fun1 = proc(x, y)
+                   begin
+                     set x := and(x y);
+                     if x then or(x y) else y
+                     end
+                   end
+               end ,
+        h = true 
+    in 
+       let
+           l = not(h)
+       in 
+          begin 
+          set h := false;
+          apply fun1(h,l)
+          end 
+       end
+    end
+
+  Resultado: #f
+
+
+Pruebas let rec:
+
+  * let rec
+            fact(x) = if is(x 0) then 1 else *(x apply fact(-(x 1))) 
+                      end
+    in
+       apply fact(6) 
+       end
+
+  Resultado: 720
+
+ 
+  * let rec
+            x(a) = if is(a 1) then 
+                                   begin set a := 7; 
+                                         a 
+                                   end 
+                              else apply x(-(a 1)) 
+                   end
+    in
+       apply x(5) 
+    end
+
+  Resultado: 7
+
+  * let rec
+            double(x) = if is(x 0) then 0 else -(apply double(-(x 1)) -2) 
+                        end
+    in
+       apply double(3) 
+    end
+
+  Resultado: 6
+
+
+Prueba If: 
+
+  * if not (true)  then 5 else 10 end
+
+  Resultado: 10
+
+Prueba Begin: 
+  
+  * var 
+        a = 7 
+    in 
+       begin set a := 34; 
+             a
+       end
+    end
+
+  Resultado: 34
+
+
+Prueba Proc: 
+
+  * let 
+        mult = proc (x, y) 
+                   *(x y) 
+               end 
+    in 
+       apply mult (7,3) 
+    end
+
+  Resultado: 21 
+
+Prueba Apply:
+
+  * let 
+        x = proc (a, b) 
+                +(a b) 
+            end 
+    in 
+       apply x (7,3) 
+    end
+
+  Resultado: 10
+
+
+Prueba For: 
+
+  * for i = 0 to 3 do i end
+
+  Resultado: 0
+             1
+             2
+             3
+            "ok"
+
+Pruebas Primitivas: 
+
+  + (2 3) = 5          
+  - (7 4) = 3
+  * (1 5) = 5
+  / (4 2) = 2
+  % (5 2) = 1
+  & (“Lenguaje ” “ Obliq”) = “Lenguaje Obliq”
+
+  not (true) = false
+  and (true true) = true
+  or (false true) = true
+
+
+Pruebas Object:
+
+Prueba Get 
+
+  * let 
+        x = object {a => 0 b => 3 c => 34 m=> meth (s, r) +(r get s.a) end} 
+            end 
+    in 
+       get x.c       
+    end
+
+  Resultado: 34
+
+
+Prueba Send: 
+
+  * let 
+        x = object {a => 7  m=> meth (s, r) +(r get s.a) end} 
+            end 
+    in 
+       send x.m(5)      
+    end
+
+
+  Resultado: 12
+
+
+Prueba Update: 
+
+  * let 
+        o = object  { a => 3    b => 4    sum => meth(s) + (get s.a get s.b) end  } 
+            end 
+    in
+       begin 
+         update o.a := 7; 
+         get o.a  
+       end           
+    end
+
+  
+  Resultado: 7
+
+
+Prueba Clone:
+
+  * let 
+        x = object {
+		     a => 3
+		     b => 4
+		     sum => meth(s) + (get s.a get s.b) end 		
+		   } end
+
+    in
+	let 
+            y = clone(x)
+        in
+	   begin
+	     update y.a := 5;
+	     +(get x.a get y.a)
+           end
+        end
+     end
+
+
+  Resultado: 8
+
